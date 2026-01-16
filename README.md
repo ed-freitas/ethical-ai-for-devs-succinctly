@@ -1,1 +1,1 @@
-Code for the book **Ethical AI for Developers Succinctly**
+**Ethical AI for Developers Succinctly**
