@@ -2,9 +2,9 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
-import shap # Assuming SHAP is available for this ethical practice
+import shap
 
-# --- Ethical Coding Practice: Local Explainability with SHAP ---
+# --- Local Explainability with SHAP ---
 
 # 1. Create a synthetic dataset for a loan approval model
 data = {

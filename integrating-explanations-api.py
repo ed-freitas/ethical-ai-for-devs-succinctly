@@ -5,9 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 import shap
 
-# -------------------------------------------------
 # 1. Train a model (from Chapter 7 context)
-# -------------------------------------------------
 
 # Synthetic loan dataset
 data = {
@@ -35,18 +33,14 @@ X_train, X_test, y_train, y_test = train_test_split(
 model = RandomForestClassifier(n_estimators=100, random_state=42)
 model.fit(X_train, y_train)
 
-# -------------------------------------------------
 # 2. Create the SHAP explainer
-# -------------------------------------------------
 
 explainer = shap.TreeExplainer(model)
 
 # Select a single instance to explain
 instance_to_explain = X_test.iloc[0]
 
-# -------------------------------------------------
 # 3. Ethical API response with explanation
-# -------------------------------------------------
 
 def generate_ethical_response(model, explainer, input_data):
     """
@@ -95,9 +89,7 @@ def generate_ethical_response(model, explainer, input_data):
     return response
 
 
-# -------------------------------------------------
 # 4. Example usage
-# -------------------------------------------------
 
 ethical_api_response = generate_ethical_response(
     model=model,

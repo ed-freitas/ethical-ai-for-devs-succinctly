@@ -2,9 +2,7 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import confusion_matrix
 
-# ------------------------------------------------
 # Example test data
-# ------------------------------------------------
 y_true = np.array([1, 1, 1, 0, 0, 1, 0, 1, 0, 0])
 y_pred = np.array([1, 1, 0, 0, 0, 1, 1, 0, 0, 1])
 
@@ -14,9 +12,7 @@ group = pd.Series(
      "Unprivileged", "Privileged", "Unprivileged", "Privileged", "Unprivileged"]
 )
 
-# ------------------------------------------------
 # Helper functions
-# ------------------------------------------------
 def tpr_fpr(y_true, y_pred):
     """Return (TPR, FPR) for a binary classifier."""
     tn, fp, fn, tp = confusion_matrix(y_true, y_pred, labels=[0, 1]).ravel()
@@ -25,10 +21,7 @@ def tpr_fpr(y_true, y_pred):
     fpr = fp / (fp + tn) if (fp + tn) else 0.0
     return tpr, fpr
 
-
-# ------------------------------------------------
 # Compute TPR/FPR per group
-# ------------------------------------------------
 tpr_priv, fpr_priv = tpr_fpr(
     y_true[group == "Privileged"],
     y_pred[group == "Privileged"],
@@ -39,9 +32,7 @@ tpr_unpriv, fpr_unpriv = tpr_fpr(
     y_pred[group == "Unprivileged"],
 )
 
-# ------------------------------------------------
 # Average Odds Difference
-# ------------------------------------------------
 aod = 0.5 * ((tpr_unpriv - tpr_priv) + (fpr_unpriv - fpr_priv))
 
 print("--- Average Odds Difference (AOD) ---")
@@ -51,9 +42,7 @@ print(f"FPR (Privileged)   : {fpr_priv:.3f}")
 print(f"FPR (Unprivileged) : {fpr_unpriv:.3f}")
 print(f"AOD                : {aod:.3f}")
 
-# ------------------------------------------------
 # Interpretation
-# ------------------------------------------------
 threshold = 0.05  # example tolerance
 
 if abs(aod) <= threshold:

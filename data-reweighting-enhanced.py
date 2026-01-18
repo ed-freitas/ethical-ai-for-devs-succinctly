@@ -4,7 +4,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix
 
-# --- Ethical Coding Practice: Data Re-weighting (Pre-processing) + Tiny In/Post-processing Hooks ---
+# --- Data Re-weighting (Pre-processing) + Tiny In/Post-processing Hooks ---
 
 # 1. Create a synthetic, biased dataset
 data = {
@@ -47,9 +47,7 @@ print("We also slightly increased regularization (lower C) as a lightweight in-p
 print(f"Baseline Model Accuracy (Overall): {model_biased.score(X_test, y_test):.4f}")
 print(f"Fair-ish Model Accuracy (Overall): {model_fair.score(X_test, y_test):.4f}")
 
-# =============================================================================
 # POST-PROCESSING (very minor): Equalized-Odds-style threshold tuning by group
-# =============================================================================
 
 def tpr_fpr(y_true_arr, y_pred_arr):
     tn, fp, fn, tp = confusion_matrix(y_true_arr, y_pred_arr, labels=[0, 1]).ravel()
@@ -80,9 +78,7 @@ print(
     "In production, you would *search* for thresholds that best match TPR and FPR across groups."
 )
 
-# =============================================================================
 # POST-PROCESSING (very minor): Reject Option Classification (ROC) near decision boundary
-# =============================================================================
 
 reject_margin = 0.05  # reject region around 0.50, e.g., [0.45, 0.55]
 reject_low, reject_high = 0.50 - reject_margin, 0.50 + reject_margin

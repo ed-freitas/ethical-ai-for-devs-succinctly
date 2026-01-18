@@ -1,12 +1,8 @@
 """
-Ethical ML Lifecycle (4 Stages)
-
-Stage 1: Data Collection & Preparation (ethical) ✅
-Stage 2: Model Development & Training (ethical) ✅
-Stage 3: Model Evaluation & Validation (ethical) ✅
-Stage 4: Deployment & Monitoring (ethical) ✅
-
-This single file expands your original snippet into a full, end-to-end, ethics-aware workflow.
+Stage 1: Data Collection & Preparation
+Stage 2: Model Development & Training
+Stage 3: Model Evaluation & Validation
+Stage 4: Deployment & Monitoring
 """
 
 from __future__ import annotations
@@ -33,11 +29,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 
-# =============================================================================
 # STAGE 1 — DATA COLLECTION & PREPARATION (ETHICAL)
-# =============================================================================
-# Ethical challenges: provenance/consent, representativeness, sensitive attributes
-# Ethical coding practice: data auditing (imbalance, missingness, target rate by group)
 
 @dataclass(frozen=True)
 class DataProvenance:
@@ -102,7 +94,7 @@ def audit_target_rate_by_group(df: pd.DataFrame, group_col: str, target_col: str
     return out
 
 
-# --- Simulated dataset (your original example) ---
+# --- Simulated dataset (original example) ---
 data = {
     "Feature_A": [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
     "Feature_B": [5, 15, 25, 35, 45, 55, 65, 75, 85, 95],
@@ -176,20 +168,7 @@ print((audit_train["Gender"].value_counts(normalize=True) * 100).round(2).to_str
 print("Test Gender %:")
 print((audit_test["Gender"].value_counts(normalize=True) * 100).round(2).to_string())
 
-
-# =============================================================================
 # STAGE 2 — MODEL DEVELOPMENT & TRAINING (ETHICAL)
-# =============================================================================
-# Ethical challenges:
-#  - Objective & harm analysis: what’s the impact of FP vs FN?
-#  - Feature selection: exclude sensitive attrs unless justified + governed
-#  - Leakage prevention: fit transforms ONLY on training data
-#  - Transparency: baseline model first, document choices
-#
-# Ethical coding practices:
-#  - Use a simple baseline (interpretable if possible)
-#  - Use a pipeline to avoid leakage
-#  - Optionally use sample reweighting for imbalance (light mitigation)
 
 def compute_group_weights(series: pd.Series) -> pd.Series:
     probs = series.value_counts(normalize=True)
@@ -228,19 +207,7 @@ print(
     "Upstream data improvement is still the best fix."
 )
 
-
-# =============================================================================
 # STAGE 3 — MODEL EVALUATION & VALIDATION (ETHICAL)
-# =============================================================================
-# Ethical challenges:
-#  - “Works overall” can still be unfair by subgroup
-#  - Different error rates across groups can cause disproportionate harm
-#  - Need to validate with appropriate metrics + slices
-#
-# Ethical coding practices:
-#  - Report standard metrics + group-sliced metrics
-#  - Compare confusion matrices per protected group
-#  - Flag fairness risks when gaps exceed a threshold
 
 def group_metrics(
     y_true: np.ndarray,
@@ -316,21 +283,7 @@ print(
     "and stakeholder review of acceptable trade-offs."
 )
 
-
-# =============================================================================
 # STAGE 4 — DEPLOYMENT & MONITORING (ETHICAL)
-# =============================================================================
-# Ethical challenges:
-#  - Model behavior can drift over time (data drift / concept drift)
-#  - Real-world feedback loops can amplify bias
-#  - Need logging, alerting, human oversight, rollback plan
-#  - Privacy & security: protect sensitive attributes and user data
-#
-# Ethical coding practices (demo):
-#  - Minimal “model card” metadata
-#  - Inference function with logging hooks (no PII)
-#  - Monitoring checks: drift + group performance snapshots
-#  - Escalation policy: alert + human review + rollback
 
 @dataclass(frozen=True)
 class ModelCard:

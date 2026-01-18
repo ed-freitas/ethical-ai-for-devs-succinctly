@@ -2,7 +2,7 @@ import logging
 import json
 import os
 
-# --- Anti-Ethical Coding Practice: Insecure Logging of PII ---
+# --- Insecure Logging of PII ---
 
 # 1. Anti-Ethical Step: Configure logging to a file without encryption or rotation
 log_file = 'insecure_app.log'

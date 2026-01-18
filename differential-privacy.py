@@ -6,7 +6,7 @@ from torch.utils.data import DataLoader, TensorDataset
 # pip install opacus
 from opacus import PrivacyEngine
 
-# --- Ethical Coding Practice: Training with Differential Privacy (Opacus) ---
+# --- Training with Differential Privacy (Opacus) ---
 
 # 1. Simulate a simple model and data
 class SimpleModel(nn.Module):

@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.metrics import confusion_matrix
 
-# --- Ethical Coding Practice: Calculating Disparate Impact Ratio (DIR) ---
+# --- Calculating Disparate Impact Ratio (DIR) ---
 
 # 1. Simulate a dataset with a protected attribute ('Race') and model predictions
 data = {

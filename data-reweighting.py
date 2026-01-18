@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 
-# --- Ethical Coding Practice: Data Re-weighting for Fairness ---
+# --- Data Re-weighting for Fairness ---
 
 # 1. Create a synthetic, biased dataset (similar to Chapter 4)
 data = {
